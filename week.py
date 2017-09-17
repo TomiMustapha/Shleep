@@ -5,7 +5,7 @@
 ## We can then combine weeks into a matrix to be represented graphically
 
 import numpy as np
-from node import Node
+
 
 class Week():
 
@@ -20,6 +20,7 @@ class Week():
             raise ValueError("Week has exceeded 7")
         else:
             self.nodes = np.append(self.nodes, node)
+    
 
         
 

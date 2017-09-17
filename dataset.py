@@ -4,7 +4,6 @@
 ## So every entry is an array of nodes
 
 import numpy as np
-from node import Node
 from week import Week
 
 class DataSet():
@@ -15,11 +14,16 @@ class DataSet():
     def insert_week(self, week):
         self.weeks = np.append(self.weeks, week)
         
+    def insert(self):
+        newWeek = Week()
+        self.insert_week(newWeek)
+            
+        
     def print(self):
         i = 1
         for week in self.weeks:
             print("Week: " + str(i))
-            week.print()
+            print(week.nodes)
             i+=1
         
     
