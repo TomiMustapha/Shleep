@@ -63,7 +63,15 @@ for week in data.weeks:
     lines = plt.plot(x,y)
     plt.setp(lines, label="Week " + str(i))
     i+=1
-    
+#Create an array that keeps track of the average sleep per week   
+averageSleep = np.array([])    
+for week in data.weeks:
+    x = np.average(week.nodes)
+    averageSleep = np.append(averageSleep,x)
+#Calculate the average sleep over all the weeks    
+averageSleepTotal = np.average(averageSleep)     
+#print(averageSleep)
+#print(averageSleepTotal)
 # Ideal sleep schedule to compare to
 ideal_y = np.array([8, 8, 8, 8, 8, 8, 8])
 ideal_x = np.arange(ideal_y.size)+1
@@ -76,6 +84,7 @@ plt.title("Sleep Distribution")
 plt.xlabel("Day of the Week")
 plt.ylabel("Hours of Sleep")
 plt.legend(loc='best')
+plt.figtext(0.5, .95, 'Your Average Sleep is '+str(round(averageSleepTotal,2))+' hours per day', horizontalalignment='right')
 
    
     
