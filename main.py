@@ -5,11 +5,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from tempfile import TemporaryFile
 from week import Week
 from dataset import DataSet
 
 def inputData(dataset):
-    i=0
+    i = np.size(dataset.weeks)-1
     done = False
     while(not done):
         try:
@@ -24,31 +25,34 @@ def inputData(dataset):
              
         try:
            
-                dataset.weeks[i].insert_node(x)
+            dataset.weeks[i].insert_node(x)
         
         except ValueError:
-            dataset.insert(x)
-            i+=1
-            
+                dataset.insert(x)
+                i+=1
+         
     
 
 # initialize the DataSet
 
 data = DataSet()
 
+file = np.load('data.npy')
+
+for week in file:
+   data.insert_week(week)
+    
+   
+print("Previous data: \n")
+data.print()
+print("\n")
+
 # The x axis will always be 1-7
 # this indicates the days of the week
 
-#x = np.array([1, 2, 3])
-
-# y = data.weeks[0].nodes
-
-## TEST SHIT
-
-week = Week()
-
-data.insert_week(week)
 inputData(data)
+
+np.save('data.npy', data.weeks)
 
 i = 1
 for week in data.weeks:
@@ -64,8 +68,6 @@ for week in data.weeks:
 ideal_y = np.array([8, 8, 8, 8, 8, 8, 8])
 ideal_x = np.arange(ideal_y.size)+1
 ideal_err = 1
-#ideal_err_bar = plt.errorbar(ideal_x, ideal_y, yerr=ideal_err)
-#ideal_err_bar[-1][0].set_linestyle('--')
 ideal = plt.plot(ideal_x, ideal_y)
 plt.setp(ideal, label="Ideal Schedule")
 
@@ -77,8 +79,7 @@ plt.legend(loc='best')
 
    
     
-plt.show()
-    
+plt.show()  
 
 
 
