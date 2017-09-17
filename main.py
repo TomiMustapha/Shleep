@@ -27,7 +27,7 @@ def inputData(dataset):
                 dataset.weeks[i].insert_node(x)
         
         except ValueError:
-            dataset.insert()
+            dataset.insert(x)
             i+=1
             
     
@@ -53,17 +53,27 @@ inputData(data)
 i = 1
 for week in data.weeks:
     y = week.nodes
-    x = np.arange(y.size)+1
+    x = np.arange(1, y.size+1, 1)
     #print(y)
     plt.scatter(x,y)
     lines = plt.plot(x,y)
     plt.setp(lines, label="Week " + str(i))
     i+=1
     
+# Ideal sleep schedule to compare to
+ideal_y = np.array([8, 8, 8, 8, 8, 8, 8])
+ideal_x = np.arange(ideal_y.size)+1
+ideal_err = 1
+#ideal_err_bar = plt.errorbar(ideal_x, ideal_y, yerr=ideal_err)
+#ideal_err_bar[-1][0].set_linestyle('--')
+ideal = plt.plot(ideal_x, ideal_y)
+plt.setp(ideal, label="Ideal Schedule")
+
+
 plt.title("Sleep Distribution")
 plt.xlabel("Day of the Week")
 plt.ylabel("Hours of Sleep")
-plt.legend(loc='best',numpoints=1)
+plt.legend(loc='best')
 
    
     

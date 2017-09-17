@@ -14,8 +14,9 @@ class DataSet():
     def insert_week(self, week):
         self.weeks = np.append(self.weeks, week)
         
-    def insert(self):
+    def insert(self, x):
         newWeek = Week()
+        newWeek.insert_node(x)
         self.insert_week(newWeek)
             
         
