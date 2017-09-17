@@ -5,7 +5,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from tempfile import TemporaryFile
 from week import Week
 from dataset import DataSet
 
