@@ -13,9 +13,9 @@ def inputData(dataset):
     done = False
     while(not done):
         try:
-            x = int(input("Insert a value : \n" ) ) 
+            x = int(input("Insert hours of sleep : \n" ) ) 
         except ValueError:
-            print("Do you want to quit? (y/n) : \n ")
+            print("Quit and show plot? (y/n) : \n ")
             finish = str(input(" "))
             if (finish == 'y'):
                  done = True
@@ -31,13 +31,6 @@ def inputData(dataset):
             i+=1
             
     
-          
-            
-      
-
-
-
-
 
 # initialize the DataSet
 
@@ -57,12 +50,20 @@ week = Week()
 data.insert_week(week)
 inputData(data)
 
+i = 1
 for week in data.weeks:
     y = week.nodes
     x = np.arange(y.size)+1
-    print(y)
+    #print(y)
     plt.scatter(x,y)
-    plt.plot(x,y)
+    lines = plt.plot(x,y)
+    plt.setp(lines, label="Week " + str(i))
+    i+=1
+    
+plt.title("Sleep Distribution")
+plt.xlabel("Day of the Week")
+plt.ylabel("Hours of Sleep")
+plt.legend(loc='best',numpoints=1)
 
    
     
